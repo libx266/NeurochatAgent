@@ -1,6 +1,6 @@
 ﻿using ApiImplements;
-
-int test = 0;
+using Bot;
+int test = 1;
 
 var input = (string promt) =>
 {
@@ -18,4 +18,11 @@ if (test == 0)
 
     await vk.SendMessage(id, await neuro.GenerateBase("Я пришел чтобы купить кролика, что", byte.MaxValue, "\n") ?? "generation error");
 
+}
+
+if (test == 1)
+{
+    var config = await File.ReadAllLinesAsync(@"C:\Rozpodrawa\neuroagent.txt");
+    var bot = new VkBot(config[0]);
+    await bot.PoolUserPrivateMessages(long.Parse(config[1]), TimeSpan.FromSeconds(2));
 }

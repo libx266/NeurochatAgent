@@ -11,15 +11,17 @@ namespace ApiInterface
         protected float _temperature;
         protected float _repetitionPenalty;
         protected float _topP;
+        protected string? _prePrompt;
 
-        protected INeuroApi(float temperature, float repetitionPenalty, float topP)
+        protected INeuroApi(float temperature, float repetitionPenalty, float topP, string? prePrompt = default)
         {
             _temperature = temperature;
             _repetitionPenalty = repetitionPenalty;
             _topP = topP;
+            _prePrompt = prePrompt;
         }
 
-        public abstract Task GenerateBase(string promt, ushort maxTokens, string stopWord);
+        public abstract Task<string> GenerateBase(string promt, ushort maxTokens, string stopWord);
 
     }
 }
