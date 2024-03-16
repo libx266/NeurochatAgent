@@ -7,12 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="VkNet" Version="1.78.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\ChatApiInterface\ApiInterface.csproj" />
+    <ProjectReference Include="..\ApiInterface\ApiInterface.csproj" />
+    <ProjectReference Include="..\ApiImplements\ApiImplements.csproj" />
   </ItemGroup>
 
 </Project>

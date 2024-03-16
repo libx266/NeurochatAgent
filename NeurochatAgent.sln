@@ -5,13 +5,13 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeurochatAgent", "NeurochatAgent\NeurochatAgent.csproj", "{AD8E1C04-9B6D-4BEF-BEC7-63FF8D8D1170}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiInterface", "ChatApiInterface\ApiInterface.csproj", "{FFFC2FD0-6691-44EF-A3BE-5C1122FAA3B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiInterface", "ApiInterface\ApiInterface.csproj", "{FFFC2FD0-6691-44EF-A3BE-5C1122FAA3B1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiImplements", "VkApi\ApiImplements.csproj", "{73CA8C0B-A311-4CDE-8E76-0DA26DFCBA04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiImplements", "ApiImplements\ApiImplements.csproj", "{73CA8C0B-A311-4CDE-8E76-0DA26DFCBA04}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{1711964E-5744-4425-A4BE-0565763501F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bot", "VkBot\Bot.csproj", "{4B1EE479-8F57-4A16-AC25-D75A2EA65283}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bot", "Bot\Bot.csproj", "{4B1EE479-8F57-4A16-AC25-D75A2EA65283}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{C4901D5F-3CBF-4D98-A3AB-96DC72366F8C}"
 EndProject

@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VkApi\ApiImplements.csproj" />
-    <ProjectReference Include="..\VkBot\Bot.csproj" />
+    <ProjectReference Include="..\ApiImplements\ApiImplements.csproj" />
+    <ProjectReference Include="..\Bot\Bot.csproj" />
   </ItemGroup>
 
 </Project>
