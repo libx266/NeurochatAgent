@@ -17,7 +17,6 @@ namespace ApiImplements
         {
             _http = new HttpClient();
             _http.BaseAddress = new Uri($"http://{ip}:{port}/v1/");
-            _http.Timeout = TimeSpan.FromMinutes(2);
         }
 
         private static StringContent MakeJson(object obj) => new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
