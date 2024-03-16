@@ -88,15 +88,24 @@ namespace Bot
 
                 if (!users2.Contains(Self))
                 {
-                    string promt = String.Join("\n", getMessages().OrderBy(m => m.SenderDate).Select(m => _propmptBuilder(new PromptMessageDto(m.Sender.FirstName, m.Sender.LastName, m.Text))));
+                    var names = new HashSet<string>();
+
+                    string promt = String.Join("\n", getMessages().OrderBy(m => m.SenderDate).ToList().Select(m => 
+                    {
+                        names.Add(m.Sender.FirstName + ' ' + m.Sender.LastName);
+                        return _propmptBuilder(new PromptMessageDto(m.Sender.FirstName, m.Sender.LastName, m.Text));
+                    }));
                     
                     var self = await  _dialog.GetUser(Self);
+                    string selfFirstName = self?.FirstName ?? "John";
+                    string selfLastName = self?.LastName ?? "Doe";
+                    names.Remove(selfFirstName + ' ' + selfLastName);
 
-                    promt += "\n" + _propmptBuilder(new PromptMessageDto(self?.FirstName ?? "John", self?.LastName ?? "Doe", ""));
+                    promt += "\n" + _propmptBuilder(new PromptMessageDto(selfFirstName, selfLastName, ""));
                     
                     var responce = await _neuro.GenerateBase(promt, 30, "\n");
                     
-                    if (!(string.IsNullOrEmpty(responce) || responce.Contains("http://") || responce.Contains("https://")))
+                    if (!(string.IsNullOrEmpty(responce) || responce.Contains("http://") || responce.Contains("https://") || names.Any(n => responce.Contains(n))))
                     {
                         await answer(responce);
                     }
