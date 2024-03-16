@@ -20,6 +20,7 @@ namespace Bot
         private readonly INeuroApi _neuro;
         private readonly ApiService _apiService;
         private readonly Func<PromptMessageDto, string> _propmptBuilder;
+        private static bool GenerationInProcess = false;
 
         public BasedBot(IDialogApi dialog, INeuroApi neuro, ApiService apiService, Func<PromptMessageDto, string> promptBuilder)
         {
@@ -86,8 +87,9 @@ namespace Bot
 
                 var users2 = getMessages().OrderByDescending(m => m.SenderDate).Select(m => m.Sender.ExternalId).Take(period).ToHashSet();
 
-                if (!users2.Contains(Self))
+                if (!(users2.Contains(Self) || GenerationInProcess))
                 {
+                    GenerationInProcess = true;
                     var names = new HashSet<string>();
 
                     string promt = String.Join("\n", getMessages().Where(m => m.Sender.FirstName != "Bot" && !string.IsNullOrEmpty(m.Text)).OrderBy(m => m.SenderDate).ToList().Select(m => 
@@ -109,6 +111,7 @@ namespace Bot
                     {
                         await answer(responce);
                     }
+                    GenerationInProcess = false;
                 }
 
             }
