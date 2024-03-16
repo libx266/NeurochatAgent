@@ -17,7 +17,7 @@ namespace ApiImplements
         {
             _http = new HttpClient();
             _http.BaseAddress = new Uri($"http://{ip}:{port}/v1/");
-            _http.Timeout = TimeSpan.FromMinutes(5);
+            _http.Timeout = TimeSpan.FromHours(0.5);
         }
 
         private static StringContent MakeJson(object obj) => new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
@@ -40,7 +40,6 @@ namespace ApiImplements
             var answer = JsonConvert.DeserializeObject<dynamic>(await response.Content.ReadAsStringAsync());
 
             return answer?.choices[0].text;
-
         }
 
         public void Dispose() => _http.Dispose();
