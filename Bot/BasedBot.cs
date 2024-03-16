@@ -84,7 +84,7 @@ namespace Bot
                 db.Messages.AddRange(insert);
                 await db.SaveChangesAsync();
 
-                var users2 = getMessages().OrderByDescending(m => m.SenderDate).Select(m => m.Sender.ExternalId).Take(period).ToHashSet();
+                var users2 = getMessages().Where(m => m.Sender.FirstName != "Bot" && !string.IsNullOrEmpty(m.Text)).OrderByDescending(m => m.SenderDate).Select(m => m.Sender.ExternalId).Take(period).ToHashSet();
 
                 if (!users2.Contains(Self))
                 {
