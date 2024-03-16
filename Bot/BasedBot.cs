@@ -103,7 +103,7 @@ namespace Bot
 
                     promt += "\n" + _propmptBuilder(new PromptMessageDto(selfFirstName, selfLastName, ""));
                     
-                    var responce = await _neuro.GenerateBase(promt, 30, "\n");
+                    var responce = await _neuro.GenerateBase(promt, 40, "\n");
                     
                     if (!(string.IsNullOrEmpty(responce) || responce.Contains("http://") || responce.Contains("https://") || names.Any(n => responce.Contains(n))))
                     {
