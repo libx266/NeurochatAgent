@@ -25,7 +25,7 @@ if (test == 1)
     var config = await File.ReadAllLinesAsync(@"C:\Rozpodrawa\neuroagent.txt");
     var bot = new VkBot(config[0], 553916613);
     var tasks = config[1].Split(' ').Select(id => bot.PoolUserPrivateMessages(long.Parse(id))).ToList();
-    tasks.AddRange(config[3].Split(' ').Select(id => bot.PoolConference(long.Parse(id))));
+    tasks.AddRange(config[3].Split(' ').Select(id => bot.PoolConference(long.Parse(id.Split(':').First()), int.Parse(id.Split(':').Last()))));
     await Task.WhenAll(tasks);
 }
 
