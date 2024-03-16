@@ -45,7 +45,7 @@ namespace ApiImplements
             }
             catch (Exception ex) 
             {
-                Console.WriteLine(JsonConvert.SerializeObject(new Exception("Generation timeout", ex), Formatting.Indented));
+                Console.WriteLine("Generation timeout");
                 return default;
             }
         }
