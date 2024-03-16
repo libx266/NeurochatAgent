@@ -153,6 +153,7 @@ namespace Bot
                 catch (Exception ex)
                 {
                     Console.WriteLine(JsonConvert.SerializeObject(ex, Formatting.Indented));
+                    GenerationInProcess = false;
                 }
 
                 await Task.Delay(delay.Value);
@@ -197,6 +198,7 @@ namespace Bot
                 catch (Exception ex)
                 {
                     Console.WriteLine(JsonConvert.SerializeObject(ex, Formatting.Indented));
+                    GenerationInProcess = false;
                 }
 
                 await Task.Delay(delay.Value);
