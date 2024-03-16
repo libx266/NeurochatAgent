@@ -90,7 +90,7 @@ namespace Bot
                 {
                     var names = new HashSet<string>();
 
-                    string promt = String.Join("\n", getMessages().OrderBy(m => m.SenderDate).ToList().Select(m => 
+                    string promt = String.Join("\n", getMessages().Where(m => m.Sender.FirstName != "Bot" && !string.IsNullOrEmpty(m.Text)).OrderBy(m => m.SenderDate).ToList().Select(m => 
                     {
                         names.Add(m.Sender.FirstName + ' ' + m.Sender.LastName);
                         return _propmptBuilder(new PromptMessageDto(m.Sender.FirstName, m.Sender.LastName, m.Text));
