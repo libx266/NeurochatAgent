@@ -17,7 +17,7 @@ namespace ApiImplements
         {
             _http = new HttpClient();
             _http.BaseAddress = new Uri($"http://{ip}:{port}/v1/");
-            _http.Timeout = TimeSpan.FromHours(0.5);
+            _http.Timeout = TimeSpan.FromMinutes(2);
         }
 
         private static StringContent MakeJson(object obj) => new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
@@ -35,11 +35,19 @@ namespace ApiImplements
             };
 
             var data2 = MakeJson(data);
-            var data_3 = JsonConvert.SerializeObject(data);
-            var response = await _http.PostAsync("completions", data2);
-            var answer = JsonConvert.DeserializeObject<dynamic>(await response.Content.ReadAsStringAsync());
 
-            return answer?.choices[0].text;
+            try
+            {
+                var response = await _http.PostAsync("completions", data2);
+                var answer = JsonConvert.DeserializeObject<dynamic>(await response.Content.ReadAsStringAsync());
+
+                return answer?.choices[0].text;
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(new Exception("Generation timeout", ex)));
+                return default;
+            }
         }
 
         public void Dispose() => _http.Dispose();
