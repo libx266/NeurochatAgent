@@ -96,7 +96,7 @@ namespace Bot
                     
                     var responce = await _neuro.GenerateBase(promt, 30, "\n");
                     
-                    if (!string.IsNullOrEmpty(responce))
+                    if (!(string.IsNullOrEmpty(responce) || responce.Contains("http://") || responce.Contains("https://")))
                     {
                         await answer(responce);
                     }
